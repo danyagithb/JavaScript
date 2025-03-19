@@ -1,6 +1,3 @@
-let divContainer = document.createElement('div');
-document.body.appendChild(divContainer);
-
 // – Є масив coursesArray котрий лежить в arrays.js (на цей момент ви вже знаєте де він знаходиться)
 // Створити для кожного елементу масиву свій блок,
 // блок розділити блоками, в яких будуть зберігатись значення окремих властивостей, для властивості modules зробити список з елементами
@@ -76,18 +73,26 @@ let coursesArray = [
 ];
 
 for (const item of coursesArray) {
+    let divContainer = document.createElement('div');
+    divContainer.classList.add('container')
+    document.body.appendChild(divContainer);
+
     let header = document.createElement('div');
     header.classList.add('header');
-    header.innerText = 'title: ' + item.title;
+    let title = document.createElement('h2');
+    title.classList.add('title')
+    title.innerText = item.title;
+    header.appendChild(title)
 
     let divDuration = document.createElement('div');
+    divDuration.classList.add('duration')
     let divMonth = document.createElement('div');
     divMonth.classList.add('month-duration');
     divMonth.innerText = 'monthDuration: ' + item.monthDuration;
 
     let divHour = document.createElement('div');
-    divMonth.classList.add('hour-duration');
-    divMonth.innerText = 'hourDuration: ' + item.hourDuration;
+    divHour.classList.add('hour-duration');
+    divHour.innerText = 'hourDuration: ' + item.hourDuration;
 
     let modules = document.createElement('ul');
     modules.classList.add('modules');
