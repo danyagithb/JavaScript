@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ціна оновлюється</title>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // Ключі для зберігання даних у LocalStorage
+            const priceKey = "price";
+            const lastUpdateTimeKey = "lastUpdateTime";
+
+            // Отримання поточного часу
+            const currentTime = Date.now();
+
+            // Отримання ціни та часу збереження останнього оновлення з LocalStorage
+            let price = parseInt(localStorage.getItem(priceKey)) || 100;
+            let lastUpdateTime = parseInt(localStorage.getItem(lastUpdateTimeKey)) || 0;
+
+            // Перевірка, чи минуло 10 секунд з останнього оновлення
+            if (currentTime - lastUpdateTime > 10000) {
+                price += 10;
+                localStorage.setItem(priceKey, price);
+                localStorage.setItem(lastUpdateTimeKey, currentTime);
+            }
+
+            // Відображення блоку з ціною
+            const block = document.createElement("div");
+            block.style.width = "200px";
+            block.style.height = "100px";
+            block.style.border = "2px solid black";
+            block.style.display = "flex";
+            block.style.alignItems = "center";
+            block.style.justifyContent = "center";
+            block.style.fontSize = "24px";
+            block.textContent = `${price} грн`;
+            document.body.appendChild(block);
+        });
+    </script>
+</head>
+<body>
+</body>
+</html>
